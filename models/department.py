@@ -7,4 +7,4 @@ class DepartmentModel(Base):
     __tablename__ = "departments"
 
     id = Column(Integer, primary_key=True)
-    department = Column(String)
+    department = Column(String(100))

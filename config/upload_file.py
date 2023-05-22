@@ -1,0 +1,2 @@
+MIN_ROWS = 1
+MAX_ROWS = 1000

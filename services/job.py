@@ -1,3 +1,5 @@
+from sqlalchemy import insert, exc
+from typing import List
 from models.job import JobModel
 from schemes.job import Job
 
@@ -22,6 +24,25 @@ class JobService():
         self.db.add(new_job)
         self.db.commit()
         return new_job
+
+    def create_jobs(self, jobs: List[Job]):
+        try:
+            result = self.db.execute(
+                insert(JobModel),
+                jobs,
+                prefixes=['OR IGNORE']
+            )
+            self.db.commit()
+            return result
+        except Exception as e:
+            self.db.rollback()
+            with self.db.no_autoflush:
+                for job in jobs:
+                    job.job = job.job.strip()
+                    new_job = JobModel(**job.dict())
+                    self.db.merge(new_job)
+                self.db.commit()
+            return e
 
     def update_job(self, job_id: int, job: Job):
         updating_job = self.db.query(JobModel).filter(

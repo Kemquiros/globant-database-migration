@@ -7,4 +7,4 @@ class JobModel(Base):
     __tablename__ = "jobs"
 
     id = Column(Integer, primary_key=True)
-    job = Column(String(30))
+    job = Column(String(100))
