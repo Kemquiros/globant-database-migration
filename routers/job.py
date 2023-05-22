@@ -7,8 +7,8 @@ from fastapi.responses import JSONResponse
 from fastapi.encoders import jsonable_encoder
 from schemes.job import Job
 from config.database import Session
-from services.job import JobService
 from config.upload_file import MIN_ROWS, MAX_ROWS
+from services.job import JobService
 
 job_router = APIRouter()
 

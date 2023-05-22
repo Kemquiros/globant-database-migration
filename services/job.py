@@ -1,4 +1,4 @@
-from sqlalchemy import insert, exc
+from sqlalchemy import insert
 from typing import List
 from models.job import JobModel
 from schemes.job import Job
@@ -29,8 +29,7 @@ class JobService():
         try:
             result = self.db.execute(
                 insert(JobModel),
-                jobs,
-                prefixes=['OR IGNORE']
+                jobs
             )
             self.db.commit()
             return result
