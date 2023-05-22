@@ -2,7 +2,7 @@ from config.database import Base
 from sqlalchemy import Column, Integer, String
 
 
-class Department(Base):
+class DepartmentModel(Base):
 
     __tablename__ = "departments"
 

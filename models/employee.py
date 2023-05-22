@@ -5,7 +5,7 @@ from department import Department
 from job import Job
 
 
-class Employee(Base):
+class EmployeeModel(Base):
 
     __tablename__ = "employees"
 
